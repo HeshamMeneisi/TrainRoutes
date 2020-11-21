@@ -16,7 +16,7 @@ def main(args) -> int:
         dest = args.dest
         start_cli_loop(router, origin, dest)
     except Exception as ex:
-        print(sys.stderr, ex)
+        print(ex, file=sys.stderr)
         return 1
 
 
@@ -48,7 +48,7 @@ def start_cli_loop(router: Router, origin: str = None, dest: str = None):
                 print(f'Result: {route.stop_count} stop(s), {route.total_time} minute(s)')
                 print(f'Details: {", ".join([str(seg) for seg in route.path])}')
         except Exception as ex:
-            print(sys.stderr, ex)
+            print(ex, file=sys.stderr)
 
         origin = dest = None
 
