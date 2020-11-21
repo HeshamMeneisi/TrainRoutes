@@ -16,20 +16,9 @@ class RouteTests(unittest.TestCase):
             context.assertEqual(case[3], route.total_time)
 
     def test_initialization(self):
-        try:
-            Router('non_existent_file.csv')
-        except Exception as ex:
-            self.assertEqual(FileNotFoundError, type(ex))
-
-        try:
-            Router('tests/data')
-        except Exception as ex:
-            self.assertEqual(IsADirectoryError, type(ex))
-
-        try:
-            Router('tests/data/invalid_file.csv')
-        except Exception as ex:
-            self.assertEqual(InvalidRecordError, type(ex))
+        self.assertRaises(FileNotFoundError, lambda: Router('non_existent_file.csv'))
+        self.assertRaises(IsADirectoryError, lambda: Router('tests/data'))
+        self.assertRaises(InvalidRecordError, lambda: Router('tests/data/invalid_file.csv'))
 
     def test_routing_cases(self):
         router = Router('tests/data/test_case_1.csv')
@@ -49,13 +38,5 @@ class RouteTests(unittest.TestCase):
 
     def test_error_handling(self):
         router = Router('tests/data/test_case_1.csv')
-
-        try:
-            router.find_route('A', 'Z')
-        except Exception as ex:
-            self.assertEqual(InvalidStationError, type(ex))
-
-        try:
-            router.find_route(None, '')
-        except Exception as ex:
-            self.assertEqual(InvalidStationError, type(ex))
+        self.assertRaises(InvalidStationError, lambda: router.find_route('A', 'Z'))
+        self.assertRaises(InvalidStationError, lambda: router.find_route(None, ''))

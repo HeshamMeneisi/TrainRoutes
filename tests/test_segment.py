@@ -27,12 +27,5 @@ class SegmentTests(unittest.TestCase):
         self.assertEqual(2, r.time)
 
     def test_error_handling(self):
-        try:
-            Segment.from_string('A,B,C')
-        except Exception as ex:
-            self.assertEqual(InvalidRecordError, type(ex))
-
-        try:
-            Segment.from_string('A,B')
-        except Exception as ex:
-            self.assertEqual(InvalidRecordError, type(ex))
+        self.assertRaises(InvalidRecordError, lambda: Segment.from_string('A,B,C'))
+        self.assertRaises(InvalidRecordError, lambda: Segment.from_string('A,B'))
