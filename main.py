@@ -28,17 +28,25 @@ def start_cli_loop(router: Router, origin: str = None, dest: str = None):
         # block until origin is valid
         while not router.has_station(origin):
             if origin:
-                print(f"Station {origin} not found")
-            origin = input("Enter Origin Station: ")
+                print(f'Station "{origin}" not found')
+            origin = input('Enter Origin Station: ')
 
         # block until dest is valid
         while not router.has_station(dest):
             if dest:
-                print(f"Station {dest} not found")
-            dest = input("Enter Destination Station: ")
+                print(f'Station "{dest}" not found')
+            dest = input('Enter Destination Station: ')
 
-        print("Routing...")
-        # TODO: find path and print
+        print('Routing...')
+        try:
+            route = router.find_route(origin, dest)
+            if route is None:
+                print(f'Result: No routes from {origin} to {dest}')
+            else:
+                print(f'Result: {route.stop_count} stop(s), {route.total_time} minute(s)')
+                print(f'Details: {", ".join([str(seg) for seg in route.path])}')
+        except Exception as ex:
+            print(sys.stderr, ex)
 
         origin = dest = None
 
