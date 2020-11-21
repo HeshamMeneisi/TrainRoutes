@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from routing.Router import Router
+from routing import Router
 
 
 def main(args) -> int:

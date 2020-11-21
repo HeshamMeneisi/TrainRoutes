@@ -1,7 +1,6 @@
 import unittest
 
-from routing.Exceptions import InvalidRecordError
-from routing.Segment import Segment
+from routing import Segment, InvalidRecordError
 
 
 class SegmentTests(unittest.TestCase):

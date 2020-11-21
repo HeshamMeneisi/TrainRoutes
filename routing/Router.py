@@ -1,5 +1,5 @@
 import os
-from routing.Segment import Segment
+from .Segment import Segment
 
 
 class Router(object):

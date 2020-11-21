@@ -1,4 +1,4 @@
-from routing.Exceptions import InvalidRecordError
+from .Exceptions import InvalidRecordError
 
 
 class Segment(object):

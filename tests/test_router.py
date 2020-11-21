@@ -1,7 +1,6 @@
 import unittest
 
-from routing.Exceptions import InvalidRecordError
-from routing.Router import Router
+from routing import Router, InvalidRecordError
 
 
 class RouteTests(unittest.TestCase):
