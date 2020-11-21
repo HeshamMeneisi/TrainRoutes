@@ -1,7 +1,7 @@
 from routing.Exceptions import InvalidRecordError
 
 
-class Route(object):
+class Segment(object):
     def __init__(self, s1: str, s2: str, time: float):
         self.s1 = s1
         self.s2 = s2
