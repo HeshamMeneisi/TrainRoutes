@@ -22,8 +22,10 @@ def main(args) -> int:
 
 def start_cli_loop(router: Router, origin: str = None, dest: str = None):
     interactive = not origin and not dest
+    first_time = True
 
-    while interactive:
+    while interactive or first_time:
+        first_time = False
 
         # block until origin is valid
         while not router.has_station(origin):
